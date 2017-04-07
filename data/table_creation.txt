@@ -1,0 +1,11 @@
+
+
+CREATE TABLE profesor (
+	cedula               INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	nombre           VARCHAR(20)  NOT NULL,
+    fecha            DATE         NOT NULL,
+    lugar_nacimiento VARCHAR(20)  NOT NULL,
+    titulo           VARCHAR(20)  NOT NULL,
+    departamento     VARCHAR(20)  NOT NULL,
+	PRIMARY KEY (cedula)
+) ENGINE = InnoDB;
