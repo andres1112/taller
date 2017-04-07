@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              <td><center><?= $nueva->cedula?></center></td>
              <td><center><?= $nueva->nombre?></center></td>
              <td><center><?= $nueva->titulo?></center></td>
-             
+             <td><center><a href="<?php echo site_url("profesor/modificar/").$nueva->cedula?>"><button type="button" name="button">Modificar</button></a>
              </tr>
         <?php  } ?>
     </table>

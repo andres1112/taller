@@ -31,5 +31,59 @@ class Profesor extends CI_Controller {
 
   }
 
+public function modificar($id = null, $modificacion = null){
+	 $this->load->model('Profesor_model');
+
+	if($id != null) {
+
+	 $this->load->model('Profesor_model');
+	 $profesor = $this->Profesor_model->obtener_profesor($id);
+
+	 $data["profesor"] = $profesor;
+
+	 if($modificacion == NULL){
+	 	$this->load->view('modificar_profesor',$data);
+	 }else{
+		 
+        $this->form_validation->set_rules('cedula', 'cedula', 'required');
+        $this->form_validation->set_rules('nombre', 'nombre', 'required');
+        $this->form_validation->set_rules('fecha', 'fecha', 'required');
+        $this->form_validation->set_rules('lugar_nacimiento', 'lugar_nacimiento', 'required');
+        $this->form_validation->set_rules('titulo', 'titulo', 'required');
+        $this->form_validation->set_rules('departamento', 'departamento', 'required');		
+			
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('modificar_profesor',$data);
+		}
+		else
+		{
+          $value['cedula'] = $this->input->post('cedula');
+          $value['nombre'] = $this->input->post('nombre');
+          $value['fecha'] = $this->input->post('fecha');
+          $value['lugar_nacimiento'] = $this->input->post('lugar_nacimiento');
+          $value['titulo'] = $this->input->post('titulo');
+          $value['departamento'] = $this->input->post('departamento');
+
+			//$this->Curso->construc($value);
+			$profe = new Profesor_model ($value);
+			if ($profe->actualizar()){
+				$data["profesor"] = $value;
+				$this->load->view('modificar_profesor',$data);
+				echo "Modificado exitosamente";
+			}
+		}
+	 }
+
+ 	}
+	else {
+		redirect('/profesor/listar_profesores');
+	 }
+
+
+ }
+
+
+
 
 }

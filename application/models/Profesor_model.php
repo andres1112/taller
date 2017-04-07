@@ -58,6 +58,26 @@ class Profesor_model extends CI_Model {
 		return $result;
 	}
 
+		public function obtener_profesor($cedula) {
+
+        $query = $this->db->get_where('profesor', array('cedula' => $cedula));
+        return $query->row_array();
+	}
+
+		public function actualizar() {
+		$data = [
+			'cedula' => $this->cedula,
+			'nombre' => $this->nombre,
+			'fecha' => $this->fecha,
+			'lugar_nacimiento' => $this->lugar_nacimiento,
+			'titulo' => $this->titulo,
+			'departamento' => $this->departamento
+		];
+
+		return $this->db->update('profesor', $data, array('cedula' => $this->cedula));
+	}
+
+
 
 	
 }
